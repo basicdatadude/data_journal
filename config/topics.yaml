@@ -1,0 +1,15 @@
+# Data Journal — Topic Registry
+# Managed by the orchestrator. Can also be edited manually.
+
+topics:
+  active: []
+    # Example:
+    # - name: "market-trends-2026"
+    #   priority: high
+    #   created: "2026-02-21"
+
+  archive: []
+    # Example:
+    # - name: "supply-chain-disruptions-2025"
+    #   completed: "2026-01-15"
+    #   report: "projects/archive/supply-chain-disruptions-2025/report/final/whitepaper.pdf"

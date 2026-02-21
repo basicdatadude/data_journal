@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment and secrets
+.env
+.env.local
+*.key
+credentials.json
+
+# Local config overrides
+config/settings.local.yaml
+
+# Data cache
+pipeline/cache/
+*.cache
+
+# Large data files (track with DVC or similar if needed)
+projects/*/data/raw/*.csv
+projects/*/data/raw/*.json
+projects/*/data/raw/*.parquet
+!projects/*/data/raw/.gitkeep
+
+# Compiled reports
+projects/*/report/final/*.pdf
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Logs (keep structure, ignore contents)
+*.log
+!.gitkeep
+
+# pytest
+.pytest_cache/
+htmlcov/
+.coverage

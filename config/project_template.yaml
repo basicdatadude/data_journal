@@ -1,0 +1,35 @@
+# Data Journal — Project Configuration Template
+# Copy this file to projects/active/<project-name>/project.yaml and customize.
+
+project:
+  name: ""                    # Short identifier (kebab-case, e.g., "market-trends-2026")
+  topic: ""                   # Full topic description
+  description: ""             # Detailed scope and objectives
+  status: created             # created | active | review | revision | archived
+  priority: normal            # high | normal | low
+  created_date: ""            # ISO date
+  completed_date: ""          # ISO date (set on archival)
+
+  research_questions:
+    - ""                      # List specific questions this project should answer
+
+  agent:
+    model: claude-sonnet-4-20250514
+    temperature: 0.3
+    max_tokens_per_call: 4096
+    budget:
+      max_tokens: 500000
+      max_api_calls: 200
+      max_cost_usd: 25.00
+
+  data_sources:
+    - type: web_search        # web_search | academic | dataset | news
+      queries: []
+    # Add more sources as needed
+
+  report:
+    template: academic_whitepaper
+    citation_format: apa
+    target_length_words: 5000
+
+  tags: []                    # Freeform tags for categorization
