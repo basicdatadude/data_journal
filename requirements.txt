@@ -1,0 +1,17 @@
+# Data Journal — Dependencies
+
+# Core
+pyyaml>=6.0
+
+# AI Client (optional — system works in placeholder mode without it)
+anthropic>=0.40.0
+
+# Testing
+pytest>=7.0
+pytest-cov>=4.0
+
+# Analysis (optional — enhances analysis capabilities)
+# numpy>=1.24
+# pandas>=2.0
+# matplotlib>=3.7
+# scipy>=1.10
