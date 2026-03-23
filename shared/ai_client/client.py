@@ -173,19 +173,32 @@ class AIClient:
         self._usage = UsageReport()
         self._client = None
 
+    @property
+    def available(self) -> bool:
+        """Check whether the AI client can actually make calls."""
+        try:
+            self._get_client()
+            return True
+        except (ImportError, Exception):
+            return False
+
     def _get_client(self):
         """Lazy-initialize the Anthropic client."""
         if self._client is None:
             try:
                 import anthropic
-                self._client = anthropic.Anthropic(
-                    api_key=self._api_key,
-                    timeout=self.timeout_seconds,
-                )
             except ImportError:
                 raise ImportError(
-                    "anthropic package is required. Install with: pip install anthropic"
+                    "anthropic package is not installed. Install with: pip install anthropic"
                 )
+            if not self._api_key:
+                raise ValueError(
+                    "ANTHROPIC_API_KEY not set. Export it or pass api_key to AIClient."
+                )
+            self._client = anthropic.Anthropic(
+                api_key=self._api_key,
+                timeout=self.timeout_seconds,
+            )
         return self._client
 
     def check_budget(self, budget_context: BudgetContext | None) -> BudgetStatus:

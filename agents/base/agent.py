@@ -138,8 +138,8 @@ class BaseAgent(ABC):
         Raises BudgetExhaustedError if budget is exceeded.
         Returns the generated text.
         """
-        if self.ai_client is None:
-            self.logger.warning("No AI client configured — returning placeholder")
+        if self.ai_client is None or not self.ai_client.available:
+            self.logger.warning("No working AI client — returning placeholder")
             return f"[AI response placeholder for: {task or 'unknown task'}]"
 
         status = self.check_budget()

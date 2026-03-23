@@ -85,14 +85,14 @@ class ProjectLogger:
             log_file=logs_dir / "agent.log",
         )
 
-    def info(self, message: str, **extra):
-        self._logger.info(message, extra={"project": self.project_name, **extra})
+    def info(self, message: str, *args, **extra):
+        self._logger.info(message, *args, extra={"project": self.project_name, **extra})
 
-    def warning(self, message: str, **extra):
-        self._logger.warning(message, extra={"project": self.project_name, **extra})
+    def warning(self, message: str, *args, **extra):
+        self._logger.warning(message, *args, extra={"project": self.project_name, **extra})
 
-    def error(self, message: str, **extra):
-        self._logger.error(message, extra={"project": self.project_name, **extra})
+    def error(self, message: str, *args, **extra):
+        self._logger.error(message, *args, extra={"project": self.project_name, **extra})
 
-    def debug(self, message: str, **extra):
-        self._logger.debug(message, extra={"project": self.project_name, **extra})
+    def debug(self, message: str, *args, **extra):
+        self._logger.debug(message, *args, extra={"project": self.project_name, **extra})

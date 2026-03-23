@@ -86,16 +86,18 @@ class ResearchAgent(BaseAgent):
             f"analysis_methods, report_outline"
         )
 
-        try:
-            plan_text = self.ai_generate(prompt, task="research_planning")
-            # Try to parse as JSON
+        if self.ai_client and self.ai_client.available:
             try:
-                plan = json.loads(plan_text)
-            except json.JSONDecodeError:
-                # If not valid JSON, wrap it
-                plan = {"raw_plan": plan_text, "search_queries": [], "analysis_methods": []}
-        except Exception as e:
-            self.logger.warning("AI planning failed, using default plan: %s", e)
+                plan_text = self.ai_generate(prompt, task="research_planning")
+                try:
+                    plan = json.loads(plan_text)
+                except json.JSONDecodeError:
+                    plan = {"raw_plan": plan_text, "search_queries": [], "analysis_methods": []}
+            except Exception as e:
+                self.logger.warning("AI planning failed, using default plan: %s", e)
+                plan = self._default_plan()
+        else:
+            self.logger.info("No AI client available, using default research plan")
             plan = self._default_plan()
 
         self.state.memory.research_plan = plan

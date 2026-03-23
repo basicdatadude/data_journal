@@ -66,8 +66,8 @@ class ReportComposer:
         template = SECTION_TEMPLATES.get(section_name, {})
         guidance = template.get("guidance", "")
 
-        if not self.ai_client:
-            # Without AI client, create a placeholder
+        if not self.ai_client or not self.ai_client.available:
+            # Without a working AI client, create a placeholder
             return ReportSection(
                 name=section_name,
                 title=template.get("title", section_name.replace("_", " ").title()),
@@ -225,7 +225,7 @@ class ReportComposer:
         if not current:
             return self.draft_section(report, section_name, context)
 
-        if not self.ai_client:
+        if not self.ai_client or not self.ai_client.available:
             current.content += f"\n\n[Revision needed: {feedback}]"
             return current
 
